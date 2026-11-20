@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="page-title">Which string is this?</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎻</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <h1 id="brand-title">Which string is this?</h1>
+        <p id="brand-subtitle">Match note letters to open strings or identify notes that don't exist</p>
+      </div>
+
+      <div class="header-right">
+        <!-- Language Switcher: English, Hebrew, Russian -->
+        <nav class="lang-nav" role="group" aria-label="Select language">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="he">עב</button>
+          <button type="button" class="lang-btn" data-lang="ru">RU</button>
+        </nav>
+
+        <!-- Stats Bar: Score is the current streak, Best is the record -->
+        <div class="stats-bar">
+          <div class="stat-pill" title="Current streak score">
+            <span class="stat-label" id="label-score">Score</span>
+            <span class="stat-value" id="score">0</span>
+          </div>
+          <div class="stat-pill" title="Best streak record">
+            <span class="stat-label" id="label-best">Best</span>
+            <span class="stat-value" id="best">0</span>
+          </div>
+          <button type="button" class="reset-btn" id="reset-btn" title="Reset score to 0">Reset</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Instrument Navigation Tabs -->
+    <nav class="instrument-nav" role="tablist" aria-label="Select instrument">
+      <button type="button" class="nav-btn active" role="tab" aria-selected="true" data-inst="violin">Violin</button>
+      <button type="button" class="nav-btn" role="tab" aria-selected="false" data-inst="viola">Viola</button>
+      <button type="button" class="nav-btn" role="tab" aria-selected="false" data-inst="cello">Cello</button>
+      <button type="button" class="nav-btn" role="tab" aria-selected="false" data-inst="bass">Double Bass</button>
+    </nav>
+
+    <!-- Main Practice Grid (Equal Height Panels) -->
+    <main class="practice-grid">
+      <!-- Left: Note Prompt Panel -->
+      <section class="prompt-panel">
+        <span class="prompt-eyebrow" id="label-target-note">Target Note</span>
+        <div class="note-display" id="target-note">D</div>
+        <div class="feedback-banner" id="feedback" role="status" aria-live="polite"></div>
+      </section>
+
+      <!-- Right: Instrument Stage Panel (Photo on left, Vertical options column on right) -->
+      <section class="stage-panel">
+        <div class="stage-content">
+          <div class="instrument-canvas-wrapper">
+            <div class="instrument-canvas" id="canvas-container">
+              <!-- Scaled SVG rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Vertical Controls Column -->
+          <div class="controls-vertical">
+            <div class="string-buttons-col" id="string-buttons" role="group" aria-label="Open Strings IV to I">
+              <!-- Buttons IV, III, II, I rendered dynamically -->
+            </div>
+
+            <button type="button" class="not-exist-btn" id="not-exist-btn" aria-label="Note doesn't exist as an open string on this instrument">
+              <span class="ne-label">
+                <span class="ne-icon" aria-hidden="true">✕</span>
+                <span id="label-not-exist">Doesn't exist</span>
+              </span>
+              <span class="btn-key" aria-hidden="true">0</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Collapsible Study Reference -->
+    <details class="reference-card" id="ref-card">
+      <summary>
+        <span id="label-ref-title">Open String Reference Guide</span>
+        <span id="label-ref-toggle" style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">(Toggle)</span>
+      </summary>
+      <div class="ref-content" id="ref-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </details>
+
+    <div class="sr-only" id="sr-announcements" aria-live="polite"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
